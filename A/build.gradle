@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+}
+
+configurations {
+    apiCompile
+    compile.extendsFrom apiCompile
+}
+
+sourceSets {
+    api {
+        java {
+            srcDirs = ["src/api/java"]
+
+        }
+    }
+
+    main {
+        java {
+            compileClasspath += api.output
+            runtimeClasspath += api.output
+        }
+    }
+}
+
+task apiCompileJar(type:Jar) {
+    appendix 'api'
+    from sourceSets.api.output
+}
+
+artifacts {
+    apiCompile apiCompileJar
+}
+
+task showConfigurationArtifacts() {
+    doLast {
+        configurations.all {
+            logger.quiet("${it}")
+            allArtifacts.forEach { PublishArtifact artifact ->
+                logger.quiet("artifact ${artifact.getFile().getAbsolutePath()}")
+            }
+        }
+        /*
+        configurations.archives.allArtifacts.forEach { PublishArtifact artifact ->
+            logger.quiet("artifact ${artifact.getFile().getAbsolutePath()}")
+        }
+        */
+    }
+}

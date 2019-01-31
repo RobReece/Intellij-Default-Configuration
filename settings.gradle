@@ -1,0 +1,11 @@
+include 'A', 'B'
+
+// In the imported IDEA module files, the dependency of C on B is incorrectly a dependency with scope "Runtime"
+// If the following 3 lines are commented out, the dependency of C on B becomes a dependency of scope "Compile"
+//include 'project'
+//findProject(':project').projectDir = file('.')
+//rootProject.projectDir = file('gradle')
+
+rootProject.children.each {
+    it.name = (it.name.length() == 1 ? 'Project' + it.name : it.name)
+}
