@@ -4,7 +4,7 @@ plugins {
 
 configurations {
     apiCompile
-    compile.extendsFrom apiCompile
+    compile.extendsFrom apiCompile // this line is important as it modifies the 'default' Configuration
 }
 
 sourceSets {

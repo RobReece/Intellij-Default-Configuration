@@ -6,7 +6,7 @@ dependencies {
 
     // the next line makes Intellij work, but gradle doesn't need it
     //compile project([path:":ProjectA", configuration: "apiCompile"])
-    compile project(":ProjectA") // uses default configuration
+    compile project(":ProjectA") // uses default configuration which includes artifacts from apiCompile
 
 }
 
